@@ -1,0 +1,25 @@
+﻿@page "/"
+
+    <div class="app-component">
+        <div class="editor-container">
+            <CodeEditor Options="@_options"></CodeEditor>
+        </div>
+    </div>
+
+@code {
+    private EditorOptions _options;
+
+    protected override void OnInitialized()
+    {
+        _options = new EditorOptions
+        {
+            Value = "// --- This is a comment",
+            Language = "csharp",
+            FontSize = 18,
+            GotoLocation = new GotoLocationOptions
+            {
+                Multiple = "goto"
+            }
+        };
+    }
+}

@@ -1,0 +1,35 @@
+﻿@inject IJSRuntime  JSRuntime
+
+<div style="height: 100%; width: 100%" id="@Id">
+    CodeEditor
+</div>
+
+@code {
+    /// <summary>
+    /// The options to create the editor with.
+    /// If null, the default options are used.
+    /// </summary>
+    [Parameter]
+    public EditorOptions Options { get; set; }
+
+    private bool _rendered;
+
+    /// <summary>
+    /// The identifier of the editor
+    /// </summary>
+    public string Id { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Id = $"mfb_{Guid.NewGuid()}";
+    }
+
+    protected override async Task OnAfterRenderAsync()
+    {
+        if (_rendered) return;
+        Console.WriteLine(Options.Value);
+
+        await JSRuntime.CreateEditor(Id, Options);
+        _rendered = true;
+    }
+}
