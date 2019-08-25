@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MonacoForBlazor.Api
+﻿namespace MonacoForBlazor.Api
 {
     /// <summary>
     /// Configuration options for editor minimap

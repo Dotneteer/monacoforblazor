@@ -1,7 +1,7 @@
 ﻿@inject IJSRuntime  JSRuntime
+@implements  IDisposable
 
 <div style="height: 100%; width: 100%" id="@Id">
-    CodeEditor
 </div>
 
 @code {
@@ -17,19 +17,133 @@
     /// <summary>
     /// The identifier of the editor
     /// </summary>
-    public string Id { get; set; }
+    public string Id { get; private set; }
 
+    #region Lifecycle methods
+
+    /// <summary>
+    /// Provide a unique ID for the editor
+    /// </summary>
     protected override void OnInitialized()
     {
         Id = $"mfb_{Guid.NewGuid()}";
     }
 
+    /// <summary>
+    /// Create the editor when rendering the container
+    /// </summary>
     protected override async Task OnAfterRenderAsync()
     {
         if (_rendered) return;
-        Console.WriteLine(Options.Value);
-
-        await JSRuntime.CreateEditor(Id, Options);
+        await JSRuntime.Create(Id, Options);
         _rendered = true;
     }
+
+    /// <summary>
+    /// Release the editor when disposing this component
+    /// </summary>
+    public void Dispose()
+    {
+        _ = JSRuntime.Dispose(Id);
+    }
+
+    #endregion
+
+    #region Editor API
+
+    /// <summary>
+    /// Release the editor.
+    /// </summary>
+    /// <returns>True, if the editor has been released; otherwise, false</returns>
+    public async Task<bool> Release()
+    {
+        return await JSRuntime.Release(Id);
+    }
+
+    /// <summary>
+    /// Apply the same font settings as the editor to target.
+    /// </summary>
+    /// <param name="id">ID of the editor</param>
+    /// <param name="target">Target HTML element of the operation.</param>
+    public async Task ApplyFontInfo(ElementReference target)
+    {
+        await JSRuntime.ApplyFontInfo(Id, target);
+    }
+
+    /// <summary>
+    /// Set the focus to this editor.
+    /// </summary>
+    public async Task Focus()
+    {
+        await JSRuntime.Focus(Id);
+    }
+
+    /// <summary>
+    /// Gets the type of this editor
+    /// </summary>
+    /// <returns>
+    /// The string that represents the type of this editor
+    /// </returns>
+    public async Task<string> GetEditorType()
+    {
+        return await JSRuntime.GetEditorType(Id);
+    }
+
+    /// <summary>
+    /// Get the scrollHeight of the editor's viewport.
+    /// </summary>
+    public async Task<double> GetScrollHeight()
+    {
+        return await JSRuntime.GetScrollHeight(Id);
+    }
+
+    /// <summary>
+    /// Get the scrollLeft of the editor's viewport.
+    /// </summary>
+    public async Task<double> GetScrollLeft()
+    {
+        return await JSRuntime.GetScrollLeft(Id);
+    }
+
+    /// <summary>
+    /// Get the scrollTop of the editor's viewport.
+    /// </summary>
+    public async Task<double> GetScrollTop()
+    {
+        return await JSRuntime.GetScrollTop(Id);
+    }
+
+    /// <summary>
+    /// Get the scrollWidth of the editor's viewport.
+    /// </summary>
+    public async Task<double> GetScrollWidth()
+    {
+        return await JSRuntime.GetScrollWidth(Id);
+    }
+
+    /// <summary>
+    /// Get the scrollTop of the editor's viewport.
+    /// </summary>
+    public async Task<VisiblePosition> GetScrolledVisiblePosition(Position position)
+    {
+        return await JSRuntime.GetScrolledVisiblePosition(Id, position);
+    }
+
+    /// <summary>
+    /// Returns the primary selection of the editor.
+    /// </summary>
+    public async Task<Selection> GetSelection()
+    {
+        return await JSRuntime.GetSelection(Id);
+    }
+
+    /// <summary>
+    /// Returns all the selections of the editor.
+    /// </summary>
+    public async Task<Selection[]> GetSelections()
+    {
+        return await JSRuntime.GetSelections(Id);
+    }
+
+    #endregion
 }

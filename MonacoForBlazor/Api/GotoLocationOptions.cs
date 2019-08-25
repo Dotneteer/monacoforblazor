@@ -1,7 +1,7 @@
 ﻿namespace MonacoForBlazor.Api
 {
     /// <summary>
-    /// 
+    /// Options for goto command
     /// </summary>
     public class GotoLocationOptions
     {

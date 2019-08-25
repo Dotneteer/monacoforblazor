@@ -1,13 +1,21 @@
 ﻿@page "/"
 
     <div class="app-component">
+        <div @ref ="TextElement" @ref:suppressField>This is text.</div>
+        <div>
+            <button @onclick="@(async () => await CodeEditor.Focus())">Focus</button>
+            <button @onclick="@(async () => {var sels = await CodeEditor.GetSelections(); foreach (var sel in sels) Console.WriteLine(sel); })">GetSelections</button>
+            <button @onclick="@(async () => await CodeEditor.ApplyFontInfo(TextElement))">ApplyFontInfo</button>
+        </div>
         <div class="editor-container">
-            <CodeEditor Options="@_options"></CodeEditor>
+            <CodeEditor @ref="CodeEditor" @ref:suppressField Options="@_options"></CodeEditor>
         </div>
     </div>
 
 @code {
     private EditorOptions _options;
+    CodeEditor CodeEditor;
+    ElementReference TextElement;
 
     protected override void OnInitialized()
     {
