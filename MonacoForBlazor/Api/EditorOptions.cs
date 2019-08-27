@@ -226,7 +226,7 @@ namespace MonacoForBlazor.Api
         /// <summary>
         /// Sets the options to handle goto command with multiple results.
         /// </summary>
-        public GotoLocationOptions GotoLocation { get; set; }
+        public GoToLocationOptions GotoLocation { get; set; }
 
         /// <summary>
         /// Should the cursor be hidden in the overview ruler.

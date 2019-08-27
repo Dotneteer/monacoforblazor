@@ -1,14 +1,14 @@
 ﻿using MonacoForBlazor.Api.Enums;
 
-namespace MonacoForBlazor.Api
+namespace MonacoForBlazor.Api.Dtos
 {
     /// <summary>
-    /// Target hit with the mouse in the editor.
+    /// DTO for an IMouseTarget object
     /// </summary>
-    public class MouseTarget
+    public class MouseTargetDto
     {
         /// <summary>
-        /// The target element
+        /// ID of cached target element
         /// </summary>
         public string ElementId { get; set; }
 
@@ -20,7 +20,7 @@ namespace MonacoForBlazor.Api
         /// <summary>
         /// The 'approximate' editor position
         /// </summary>
-        public Position Position { get; set; }
+        public PositionDto Position { get; set; }
 
         /// <summary>
         /// Desired mouse column (e.g. when position.column gets clamped to text length 
@@ -31,13 +31,6 @@ namespace MonacoForBlazor.Api
         /// <summary>
         /// The 'approximate' editor range
         /// </summary>
-        public Range Range { get; set; }
-
-        /// <summary>
-        /// Provides human-readable representation
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
-            => $"(id: {ElementId}, type: {Type}, mousecol: {MouseColumn}, pos: {Position}, range: {Range})";
+        public RangeDto Range { get; set; }
     }
 }

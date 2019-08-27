@@ -3,7 +3,7 @@
     /// <summary>
     /// Options for goto command
     /// </summary>
-    public class GotoLocationOptions
+    public class GoToLocationOptions
     {
         /// <summary>
         /// Control how goto-command work when having multiple results.

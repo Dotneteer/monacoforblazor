@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using MonacoForBlazor.Api;
+using MonacoForBlazor.Api.Abstractions;
 using MonacoForBlazor.Api.Dtos;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MonacoForBlazor
@@ -43,6 +43,28 @@ namespace MonacoForBlazor
         public static async Task<bool> Dispose(this IJSRuntime jsRuntime, string id)
         {
             return await jsRuntime.InvokeAsync<bool>("MonacoForBlazor.dispose", id);
+        }
+
+        /// <summary>
+        /// Returns the current editor's configuration
+        /// </summary>
+        /// <param name="jsRuntime">JS runtime object</param>
+        /// <param name="id">ID of the editor</param>
+        /// <returns>Editor configuration</returns>
+        public static async Task<IEditorConfiguration> GetConfiguration(this IJSRuntime jsRuntime, string id)
+        {
+            return await jsRuntime.InvokeAsync<EditorConfiguration>("MonacoForBlazor.getConfiguration", id);
+        }
+
+        /// <summary>
+        /// Returns the editor's dom node
+        /// </summary>
+        /// <param name="jsRuntime">JS runtime object</param>
+        /// <param name="id">ID of the editor</param>
+        /// <returns>The element ID of the DOM node</returns>
+        public static async Task<string> GetDomNode(this IJSRuntime jsRuntime, string id)
+        {
+            return await jsRuntime.InvokeAsync<string>("MonacoForBlazor.getDomNode", id);
         }
 
         /// <summary>
@@ -140,6 +162,32 @@ namespace MonacoForBlazor
                 dto.PositionColumn);
             }
             return result;
+        }
+
+        /// <summary>
+        /// Get the hit test target at coordinates clientX and clientY. The 
+        /// coordinates are relative to the top-left of the viewport.
+        /// </summary>
+        /// <param name="jsRuntime">JS runtime object</param>
+        /// <param name="id">ID of the editor</param>
+        /// <param name="clientX">Client X position</param>
+        /// <param name="clientY">Client Y position</param>
+        public static async Task<MouseTarget> GetTargetAtClientPoint(this IJSRuntime jsRuntime, 
+            string id, 
+            int clientX,
+            int clientY)
+        {
+            var dto = await jsRuntime.InvokeAsync<MouseTargetDto>("MonacoForBlazor.getTargetAtClientPoint", 
+                id, clientX, clientY);
+            return new MouseTarget
+            {
+                ElementId = dto.ElementId,
+                Type = dto.Type,
+                MouseColumn = dto.MouseColumn,
+                Position = new Position(dto.Position.LineNumber, dto.Position.Column),
+                Range = new Range(dto.Range.StartLineNumber, dto.Range.StartColumn,
+                    dto.Range.EndLineNumber, dto.Range.EndColumn)
+            };
         }
 
         /// <summary>

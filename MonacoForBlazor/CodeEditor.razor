@@ -79,6 +79,25 @@
     }
 
     /// <summary>
+    /// Returns the current editor's configuration
+    /// </summary>
+    public async Task<IEditorConfiguration> GetConfiguration()
+    {
+        return await JSRuntime.GetConfiguration(Id);
+    }
+
+    /// <summary>
+    /// Returns the editor's dom node
+    /// </summary>
+    /// <returns>
+    /// The ElementID of the DOM node
+    /// </returns>
+    public async Task<string> GetDomNode()
+    {
+        return await JSRuntime.GetDomNode(Id);
+    }
+
+    /// <summary>
     /// Gets the type of this editor
     /// </summary>
     /// <returns>
@@ -135,6 +154,15 @@
     public async Task<Selection> GetSelection()
     {
         return await JSRuntime.GetSelection(Id);
+    }
+
+    /// <summary>
+    /// Get the hit test target at coordinates clientX and clientY. The 
+    /// coordinates are relative to the top-left of the viewport.
+    /// </summary>
+    public async Task<MouseTarget> GetTargetAtClientPoint(int clientX, int clientY)
+    {
+        return await JSRuntime.GetTargetAtClientPoint(Id, clientX, clientY);
     }
 
     /// <summary>

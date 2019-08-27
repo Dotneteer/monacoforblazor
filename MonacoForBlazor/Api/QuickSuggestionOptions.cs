@@ -6,7 +6,11 @@ namespace MonacoForBlazor.Api
     /// </summary>
     public class QuickSuggestionOptions
     {
-        public QuickSuggestionOptions(bool value = true)
+        public QuickSuggestionOptions(): this(true)
+        {
+        }
+
+        public QuickSuggestionOptions(bool value)
         {
             Other = Comments = Strings = value;
         }

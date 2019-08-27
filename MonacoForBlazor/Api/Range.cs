@@ -472,6 +472,6 @@ namespace MonacoForBlazor.Api
         /// </summary>
         /// <param name="range">Range to check</param>
         public static bool SpansMultipleLines(IRange range)
-		    => range.EndLineNumber > range.StartLineNumber;
+            => range.EndLineNumber > range.StartLineNumber;
     }
 }

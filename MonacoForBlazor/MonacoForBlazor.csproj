@@ -24,16 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="content\interop.js" />
     <EmbeddedResource Remove="content\monaco.d.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="content\interop.js" />
     <None Remove="content\monaco.d.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="content\interop.js" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
         <div @ref ="TextElement" @ref:suppressField>This is text.</div>
         <div>
             <button @onclick="@(async () => await CodeEditor.Focus())">Focus</button>
-            <button @onclick="@(async () => {var sels = await CodeEditor.GetSelections(); foreach (var sel in sels) Console.WriteLine(sel); })">GetSelections</button>
+            <button @onclick="@(async () => Console.WriteLine(await CodeEditor.GetConfiguration()))">GetConfiguration</button>
             <button @onclick="@(async () => await CodeEditor.ApplyFontInfo(TextElement))">ApplyFontInfo</button>
         </div>
         <div class="editor-container">
@@ -24,7 +24,7 @@
             Value = "// --- This is a comment",
             Language = "csharp",
             FontSize = 18,
-            GotoLocation = new GotoLocationOptions
+            GotoLocation = new GoToLocationOptions
             {
                 Multiple = "goto"
             }

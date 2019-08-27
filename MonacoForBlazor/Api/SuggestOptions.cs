@@ -39,9 +39,7 @@ namespace MonacoForBlazor.Api
         public int MaxVisibleSuggestions { get; set; } = 12;
 
         /// <summary>
-        /**
-         * Names of suggestion types to filter.
-         */
+        /// Names of suggestion types to filter.
         /// </summary>
         public Dictionary<string, bool> FilteredTypes { get; set; }
     }
