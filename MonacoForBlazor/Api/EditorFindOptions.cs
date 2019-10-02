@@ -1,10 +1,12 @@
-﻿namespace MonacoForBlazor.Api
+﻿using MonacoForBlazor.Api.Abstractions;
+
+namespace MonacoForBlazor.Api
 {
 
     /// <summary>
     /// Configuration options for editor find widget
     /// </summary>
-    public class EditorFindOptions
+    public class EditorFindOptions : IEditorFindOptions
     {
         /// <summary>
         /// Controls if we seed search string in the Find Widget with editor selection.

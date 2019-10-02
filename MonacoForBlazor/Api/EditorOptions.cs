@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MonacoForBlazor.Api.Dtos;
+using System.Collections.Generic;
 
 namespace MonacoForBlazor.Api
 {
@@ -303,7 +304,7 @@ namespace MonacoForBlazor.Api
         /// <summary>
         /// Control the behavior and rendering of the minimap.
         /// </summary>
-        public EditorMinimapOptions Minimap { get; set; }
+        public EditorMinimapOptionsDto Minimap { get; set; }
 
         /// <summary>
         /// The initial model associated with this code editor.
@@ -355,7 +356,7 @@ namespace MonacoForBlazor.Api
         /// <summary>
         /// Parameter hint options.
         /// </summary>
-        public EditorParameterHintOptions ParameterHints { get; set; }
+        public EditorParameterHintOptionsDto ParameterHints { get; set; }
 
         /// <summary>
         /// Enable quick suggestions (shadow suggestions)

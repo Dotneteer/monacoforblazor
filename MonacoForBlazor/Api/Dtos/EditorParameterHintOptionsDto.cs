@@ -1,9 +1,11 @@
-﻿namespace MonacoForBlazor.Api
+﻿using MonacoForBlazor.Api.Abstractions;
+
+namespace MonacoForBlazor.Api.Dtos
 {
     /// <summary>
     /// Configuration options for parameter hints
     /// </summary>
-    public class EditorParameterHintOptions
+    public class EditorParameterHintOptionsDto : IEditorParameterHintOptions
     {
         /// <summary>
         /// Enable parameter hints.

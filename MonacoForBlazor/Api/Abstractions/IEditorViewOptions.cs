@@ -17,7 +17,7 @@ namespace MonacoForBlazor.Api.Abstractions
         bool GlyphMargin { get; }
         bool HideCursorInOverviewRuler { get; }
         bool HighlightActiveIndentGuide { get; }
-        InternalEditorMinimapOptions Minimap { get; }
+        IEditorMinimapOptions Minimap { get; }
         bool MouseWheelZoom { get; }
         bool OverviewRulerBorder { get; }
         int OverviewRulerLanes { get; }
@@ -30,7 +30,7 @@ namespace MonacoForBlazor.Api.Abstractions
         int RevealHorizontalRightPadding { get; }
         bool RoundedSelection { get; }
         int[] Rulers { get; }
-        InternalEditorScrollbarOptions Scrollbar { get; }
+        IEditorScrollbarOptions Scrollbar { get; }
         int ScrollBeyondLastColumn { get; }
         bool ScrollBeyondLastLine { get; }
         bool SelectOnLineNumbers { get; }

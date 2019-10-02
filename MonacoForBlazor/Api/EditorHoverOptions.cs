@@ -1,9 +1,11 @@
-﻿namespace MonacoForBlazor.Api
+﻿using MonacoForBlazor.Api.Abstractions;
+
+namespace MonacoForBlazor.Api
 {
     /// <summary>
     /// Configuration options for editor hover
     /// </summary>
-    public class EditorHoverOptions
+    public class EditorHoverOptions : IEditorHoverOptions
     {
         /// <summary>
         /// Enable the hover.

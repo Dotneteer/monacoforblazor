@@ -1,12 +1,12 @@
 ﻿using MonacoForBlazor.Api.Abstractions;
 using MonacoForBlazor.Api.Enums;
 
-namespace MonacoForBlazor.Api
+namespace MonacoForBlazor.Api.Dtos
 {
     /// <summary>
     /// The internal layout details of the editor.
     /// </summary>
-    public class EditorLayoutInfo: IEditorLayoutInfo
+    public class EditorLayoutInfoDto: IEditorLayoutInfo
     {
         /// <summary>
         /// Full editor width.

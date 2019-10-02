@@ -1,9 +1,11 @@
-﻿namespace MonacoForBlazor.Api.Abstractions
+﻿using MonacoForBlazor.Api.Abstractions;
+
+namespace MonacoForBlazor.Api.Dtos
 {
     /// <summary>
     /// Provides information about the editor font
     /// </summary>
-    public class FontInfo : IFontInfo
+    public class FontInfoDto : IFontInfo
     {
         public bool IsTrusted { get; set; }
         public bool IsMonospace { get; set; }

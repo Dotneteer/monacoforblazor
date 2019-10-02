@@ -1,12 +1,13 @@
-﻿using System;
+﻿using MonacoForBlazor.Api.Abstractions;
+using System;
 namespace MonacoForBlazor.Api
 {
     /// <summary>
     /// Provides quick suggestion options
     /// </summary>
-    public class QuickSuggestionOptions
+    public class QuickSuggestionOptions : IQuickSuggestionOptions
     {
-        public QuickSuggestionOptions(): this(true)
+        public QuickSuggestionOptions() : this(true)
         {
         }
 

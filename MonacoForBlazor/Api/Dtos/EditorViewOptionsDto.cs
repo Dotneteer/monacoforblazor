@@ -1,12 +1,8 @@
-﻿using MonacoForBlazor.Api.Abstractions;
-using MonacoForBlazor.Api.Enums;
+﻿using MonacoForBlazor.Api.Enums;
 
-namespace MonacoForBlazor.Api
+namespace MonacoForBlazor.Api.Dtos
 {
-    /// <summary>
-    /// The view options for the editor
-    /// </summary>
-    public class EditorViewOptions : IEditorViewOptions
+    public class EditorViewOptionsDto
     {
         public string ExtraEditorClassName { get; set; }
         public bool DisableMonospaceOptimizations { get; set; }
@@ -37,8 +33,8 @@ namespace MonacoForBlazor.Api
         public bool RenderIndentGuides { get; set; }
         public bool HighlightActiveIndentGuide { get; set; }
         public string RenderLineHighlight { get; set; }
-        public InternalEditorScrollbarOptions Scrollbar { get; set; }
-        public InternalEditorMinimapOptions Minimap { get; set; }
+        public EditorScrollbarOptionsDto Scrollbar { get; set; }
+        public EditorMinimapOptionsDto Minimap { get; set; }
         public bool FixedOverflowWidgets { get; set; }
     }
 }

@@ -1,123 +1,124 @@
-﻿namespace MonacoForBlazor.Api.Abstractions
+﻿namespace MonacoForBlazor.Api.Dtos
 {
     /// <summary>
-    /// Represents the current configuration of the editor
+    /// Transfers the current configuration of the editor
+    /// from JavaScript to .NET.
     /// </summary>
-    public interface IEditorConfiguration
+    public class EditorConfigurationDto
     {
         /// <summary>
         /// Options for auto closing brackets.
         /// </summary>
-        string AutoClosingBrackets { get; }
+        public string AutoClosingBrackets { get; set; }
 
         /// <summary>
         /// Options for auto closing quotes.
         /// </summary>
-        string AutoClosingQuotes { get; }
+        public string AutoClosingQuotes { get; set; }
 
         /// <summary>
         /// Enable auto indentation adjustment.
         /// </summary>
-        bool AutoIndent { get; }
+        public bool AutoIndent { get; set; }
 
         /// <summary>
         /// Options for auto surrounding.
         /// </summary>
-        string AutoSurround { get; }
+        public string AutoSurround { get; set; }
 
         /// <summary>
         /// Enables layer hinting.
         /// </summary>
-        bool CanUseLayerHinting { get; }
+        public bool CanUseLayerHinting { get; set; }
 
         /// <summary>
         /// Retrieves the editor contribution information.
         /// </summary>
-        IEditorContribOptions ContribInfo { get; }
+        public EditorContribOptionsDto ContribInfo { get; set; }
 
         /// <summary>
         /// Enables rich text copy.
         /// </summary>
-        bool CopyWithSyntaxHighlighting { get; }
-        
+        public bool CopyWithSyntaxHighlighting { get; set; }
+
         /// <summary>
         /// Enables drag and drop operations.
         /// </summary>
-        bool DragAndDrop { get; }
+        public bool DragAndDrop { get; set; }
 
         /// <summary>
         /// Class name to be added to the editor.
         /// </summary>
-        string EditorClassName { get; }
+        public string EditorClassName { get; set; }
 
         /// <summary>
         /// Copying without a selection copies the current line.
         /// </summary>
-        bool EmptySelectionClipboard { get; }
+        public bool EmptySelectionClipboard { get; set; }
 
         /// <summary>
         /// Retrieves the information about the editor font.
         /// </summary>
-        IFontInfo FontInfo { get; }
-        
+        public FontInfoDto FontInfo { get; set; }
+
         /// <summary>
         /// Retrieves information about the editor layout
         /// </summary>
-        IEditorLayoutInfo LayoutInfo { get; }
+        public EditorLayoutInfoDto LayoutInfo { get; set; }
 
         /// <summary>
         /// The line height.
         /// </summary>
-        int LineHeight { get; }
+        public int LineHeight { get; set; }
 
         /// <summary>
         /// Merge overlapping selections.
         /// </summary>
-        bool MultiCursorMergeOverlapping { get; }
+        public bool MultiCursorMergeOverlapping { get; set; }
 
         /// <summary>
         /// The modifier key to be used to add multiple cursors with the mouse.
         /// </summary>
-        string MultiCursorModifier { get; }
+        public string MultiCursorModifier { get; set; }
 
         /// <summary>
         /// The pixel ratio of the editor.
         /// </summary>
-        double PixelRatio { get; }
+        public double PixelRatio { get; set; }
 
         /// <summary>
         /// Is the editor read-only?
         /// </summary>        
-        bool ReadOnly { get; }
+        public bool ReadOnly { get; set; }
 
         /// <summary>
         /// Controls fading out of unused variables.
         /// </summary>
-        bool ShowUnused { get; }
+        public bool ShowUnused { get; set; }
 
         /// <summary>
         /// Enables tabfocus.
         /// </summary>
-        bool TabFocusMode { get; }
+        public bool TabFocusMode { get; set; }
 
         /// <summary>
         /// Inserting and deleting whitespace follows tab stops.
         /// </summary>
-        bool UseTabStops { get; }
+        public bool UseTabStops { get; set; }
 
         /// <summary>
         /// A string containing the word separators used when doing word navigation.
         /// </summary>
-        string WordSeparators { get; }
+        public string WordSeparators { get; set; }
 
         /// <summary>
         /// Retrieves the information about the editor's view.
         /// </summary>
-        IEditorViewOptions ViewInfo { get; }
+        public EditorViewOptionsDto ViewInfo { get; set; }
 
         /// <summary>
         /// Retrieves the information about wrapping.
         /// </summary>
-        IEditorWrappingInfo WrappingInfo { get; }
+        public EditorWrappingInfoDto WrappingInfo { get; set; }
     }
 }

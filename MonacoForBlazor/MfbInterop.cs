@@ -3,6 +3,8 @@ using Microsoft.JSInterop;
 using MonacoForBlazor.Api;
 using MonacoForBlazor.Api.Abstractions;
 using MonacoForBlazor.Api.Dtos;
+using MonacoForBlazor.Api.Internals;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
 namespace MonacoForBlazor
@@ -53,7 +55,114 @@ namespace MonacoForBlazor
         /// <returns>Editor configuration</returns>
         public static async Task<IEditorConfiguration> GetConfiguration(this IJSRuntime jsRuntime, string id)
         {
-            return await jsRuntime.InvokeAsync<EditorConfiguration>("MonacoForBlazor.getConfiguration", id);
+            var config = await jsRuntime.InvokeAsync<EditorConfigurationDto>("MonacoForBlazor.getConfiguration", id);
+            var contribInfo = config.ContribInfo;
+            var suggest = contribInfo.Suggest;
+            var suggestInfo = suggest == null ? null : new InternalSuggestOptions
+            {
+                FilteredTypes = new ReadOnlyDictionary<string, bool>(suggest.FilteredTypes),
+                FilterGraceful = suggest.FilterGraceful,
+                LocalityBonus = suggest.LocalityBonus,
+                MaxVisibleSuggestions = suggest.MaxVisibleSuggestions,
+                ShareSuggestSelections = suggest.ShareSuggestSelections,
+                ShowIcons = suggest.ShowIcons,
+                SnippetsPreventQuickSuggestions = suggest.SnippetsPreventQuickSuggestions
+            };
+            var viewInfo = config.ViewInfo;
+            return new InternalEditorConfiguration
+            {
+                AutoClosingBrackets = config.AutoClosingBrackets,
+                AutoClosingQuotes = config.AutoClosingQuotes,
+                AutoIndent = config.AutoIndent,
+                AutoSurround = config.AutoSurround,
+                CanUseLayerHinting = config.CanUseLayerHinting,
+                ContribInfo = new InternalEditorContribOptions
+                {
+                    AcceptSuggestionOnCommitCharacter = contribInfo.AcceptSuggestionOnCommitCharacter,
+                    AcceptSuggestionOnEnter = contribInfo.AcceptSuggestionOnEnter,
+                    CodeActionsOnSave = new ReadOnlyDictionary<string, bool>(contribInfo.CodeActionsOnSave),
+                    CodeActionsOnSaveTimeout = contribInfo.CodeActionsOnSaveTimeout,
+                    CodeLens = contribInfo.CodeLens,
+                    ColorDecorators = contribInfo.ColorDecorators,
+                    Contextmenu = contribInfo.Contextmenu,
+                    Find = contribInfo.Find,
+                    Folding = contribInfo.Folding,
+                    FoldingStrategy = contribInfo.FoldingStrategy,
+                    FormatOnPaste = contribInfo.FormatOnPaste,
+                    FormatOnType = contribInfo.FormatOnType,
+                    GotoLocation = contribInfo.GotoLocation,
+                    Hover = contribInfo.Hover,
+                    LightbulbEnabled = contribInfo.LightbulbEnabled,
+                    Links = contribInfo.Links,
+                    MatchBrackets = contribInfo.MatchBrackets,
+                    OccurrencesHighlight = contribInfo.OccurrencesHighlight,
+                    ParameterHints = contribInfo.ParameterHints,
+                    QuickSuggestionOptions = contribInfo.QuickSuggestionOptions,
+                    QuickSuggestions = contribInfo.QuickSuggestions,
+                    QuickSuggestionsDelay = contribInfo.QuickSuggestionsDelay,
+                    SelectionClipboard = contribInfo.SelectionClipboard,
+                    SelectionHighlight = contribInfo.SelectionHighlight,
+                    ShowFoldingControls = contribInfo.ShowFoldingControls,
+                    Suggest = suggestInfo,
+                    SuggestFontSize = contribInfo.SuggestFontSize,
+                    SuggestLineHeight = contribInfo.SuggestLineHeight,
+                    SuggestOnTriggerCharacters = contribInfo.SuggestOnTriggerCharacters,
+                    SuggestSelection = contribInfo.SuggestSelection,
+                    TabCompletion = contribInfo.TabCompletion,
+                    WordBasedSuggestions = contribInfo.WordBasedSuggestions
+                },
+                CopyWithSyntaxHighlighting = config.CopyWithSyntaxHighlighting,
+                DragAndDrop = config.DragAndDrop,
+                EditorClassName = config.EditorClassName,
+                EmptySelectionClipboard = config.EmptySelectionClipboard,
+                FontInfo = config.FontInfo,
+                LayoutInfo = config.LayoutInfo,
+                LineHeight = config.LineHeight,
+                MultiCursorMergeOverlapping = config.MultiCursorMergeOverlapping,
+                MultiCursorModifier = config.MultiCursorModifier,
+                PixelRatio = config.PixelRatio,
+                ReadOnly = config.ReadOnly,
+                ShowUnused = config.ShowUnused,
+                TabFocusMode = config.TabFocusMode,
+                UseTabStops = config.UseTabStops,
+                ViewInfo = new InternalEditorViewOptions
+                {
+                    AriaLabel = viewInfo.AriaLabel,
+                    CursorBlinking = viewInfo.CursorBlinking,
+                    CursorSmoothCaretAnimation = viewInfo.CursorSmoothCaretAnimation,
+                    CursorStyle = viewInfo.CursorStyle,
+                    CursorSurroundingLines = viewInfo.CursorSurroundingLines,
+                    CursorWidth = viewInfo.CursorWidth,
+                    DisableMonospaceOptimizations = viewInfo.DisableMonospaceOptimizations,
+                    ExtraEditorClassName = viewInfo.ExtraEditorClassName,
+                    FixedOverflowWidgets = viewInfo.FixedOverflowWidgets,
+                    FontLigatures = viewInfo.FontLigatures,
+                    GlyphMargin = viewInfo.GlyphMargin,
+                    HideCursorInOverviewRuler = viewInfo.HideCursorInOverviewRuler,
+                    HighlightActiveIndentGuide = viewInfo.HighlightActiveIndentGuide,
+                    Minimap = viewInfo.Minimap,
+                    MouseWheelZoom = viewInfo.MouseWheelZoom,
+                    OverviewRulerBorder = viewInfo.OverviewRulerBorder,
+                    OverviewRulerLanes = viewInfo.OverviewRulerLanes,
+                    RenderControlCharacters = viewInfo.RenderControlCharacters,
+                    RenderFinalNewline = viewInfo.RenderFinalNewline,
+                    RenderIndentGuides = viewInfo.RenderIndentGuides,
+                    RenderLineHighlight = viewInfo.RenderLineHighlight,
+                    RenderLineNumbers = viewInfo.RenderLineNumbers,
+                    RenderWhitespace = viewInfo.RenderWhitespace,
+                    RevealHorizontalRightPadding = viewInfo.RevealHorizontalRightPadding,
+                    RoundedSelection = viewInfo.RoundedSelection,
+                    Rulers = viewInfo.Rulers,
+                    Scrollbar = viewInfo.Scrollbar,
+                    ScrollBeyondLastColumn = viewInfo.ScrollBeyondLastColumn,
+                    ScrollBeyondLastLine = viewInfo.ScrollBeyondLastLine,
+                    SelectOnLineNumbers = viewInfo.SelectOnLineNumbers,
+                    SmoothScrolling = viewInfo.SmoothScrolling,
+                    StopRenderingLineAfter = viewInfo.StopRenderingLineAfter
+                },
+                WordSeparators = config.WordSeparators,
+                WrappingInfo = config.WrappingInfo
+            };
         }
 
         /// <summary>

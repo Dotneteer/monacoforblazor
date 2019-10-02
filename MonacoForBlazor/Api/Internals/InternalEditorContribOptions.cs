@@ -1,171 +1,173 @@
-﻿using System.Collections.ObjectModel;
+﻿using MonacoForBlazor.Api.Abstractions;
+using System.Collections.ObjectModel;
 
-namespace MonacoForBlazor.Api.Abstractions
+namespace MonacoForBlazor.Api.Internals
 {
     /// <summary>
-    /// Represents the contribution options for the editor.
+    /// Holds an internal representation of the contribution options for the editor.
     /// </summary>
-    public interface IEditorContribOptions
+    internal class InternalEditorContribOptions: IEditorContribOptions
     {
         /// <summary>
         /// Accept suggestions on provider defined characters.
         /// </summary>
-        bool AcceptSuggestionOnCommitCharacter { get; }
+        public bool AcceptSuggestionOnCommitCharacter { get; set; }
 
         /// <summary>
         /// Accept suggestions on ENTER.
         /// </summary>
-        string AcceptSuggestionOnEnter { get; }
+        public string AcceptSuggestionOnEnter { get; set; }
 
         /// <summary>
         /// Code action kinds to be run on save.
         /// </summary>
-        ReadOnlyDictionary<string, bool> CodeActionsOnSave { get; }
+        public ReadOnlyDictionary<string, bool> CodeActionsOnSave { get; set; }
 
         /// <summary>
         /// Timeout for running code actions on save.
         /// </summary>
-        int CodeActionsOnSaveTimeout { get; }
+        public int CodeActionsOnSaveTimeout { get; set; }
 
         /// <summary>
         /// Show code lens.
         /// </summary>
-        bool CodeLens { get; }
+        public bool CodeLens { get; set; }
 
         /// <summary>
         /// Enable inline color decorators and color picker rendering.
         /// </summary>
-        bool ColorDecorators { get; }
+        public bool ColorDecorators { get; set; }
 
         /// <summary>
         /// Enable custom contextmenu.
         /// </summary>
-        bool Contextmenu { get; }
+        public bool Contextmenu { get; set; }
 
         /// <summary>
         /// Control the behavior of the find widget.
         /// </summary>
-        IEditorFindOptions Find { get; }
+        public IEditorFindOptions Find { get; set; }
 
         /// <summary>
         /// Enable code folding.
         /// </summary>
-        bool Folding { get; }
+        public bool Folding { get; set; }
 
         /// <summary>
         /// Gets the folding strategy.
         /// </summary>
-        string FoldingStrategy { get; }
+        public string FoldingStrategy { get; set; }
 
         /// <summary>
         /// Enable format on paste.
         /// </summary>
-        bool FormatOnPaste { get; }
+        public bool FormatOnPaste { get; set; }
 
         /// <summary>
         /// Enable format on type.
         /// </summary>
-        bool FormatOnType { get; }
+        public bool FormatOnType { get; set; }
 
         /// <summary>
         /// Gets go to location behavior.
         /// </summary>
-        IGoToLocationOptions GotoLocation { get; }
+        public IGoToLocationOptions GotoLocation { get; set; }
 
         /// <summary>
         /// Gets the editor's hover behavior
         /// </summary>
-        IEditorHoverOptions Hover { get; }
+        public IEditorHoverOptions Hover { get; set; }
 
         /// <summary>
         /// Enables the lightbulb indicator.
         /// </summary>
-        bool LightbulbEnabled { get; }
+        public bool LightbulbEnabled { get; set; }
 
         /// <summary>
         /// Enable detecting links and making them clickable.
         /// </summary>
-        bool Links { get; }
+        public bool Links { get; set; }
 
         /// <summary>
         /// Enable highlighting of matching brackets.
         /// </summary>
-        bool MatchBrackets { get; }
+        public bool MatchBrackets { get; set; }
 
         /// <summary>
         /// Enable semantic occurrences highlight.
         /// </summary>
-        bool OccurrencesHighlight { get; }
+        public bool OccurrencesHighlight { get; set; }
 
         /// <summary>
         /// Gets information abaout parameter hints behavior.
         /// </summary>
-        IEditorParameterHintOptions ParameterHints { get; }
+        public IEditorParameterHintOptions ParameterHints { get; set; }
 
         /// <summary>
         /// Gets information about quick suggestions.
         /// </summary>
-        IQuickSuggestionOptions QuickSuggestionOptions { get; }
+        public IQuickSuggestionOptions QuickSuggestionOptions { get; set; }
 
         /// <summary>
         /// Enables quick suggestions.
         /// </summary>
-        bool? QuickSuggestions { get; }
+        public bool? QuickSuggestions { get; set; }
 
         /// <summary>
         /// Quick suggestions show delay (in ms).
         /// </summary>
-        int QuickSuggestionsDelay { get; }
+        public int QuickSuggestionsDelay { get; set; }
 
         /// <summary>
         /// Enable Linux primary clipboard.
         /// </summary>
-        bool SelectionClipboard { get; }
+        public bool SelectionClipboard { get; set; }
 
         /// <summary>
         /// Enable selection highlight.
         /// </summary>
-        bool SelectionHighlight { get; }
+        public bool SelectionHighlight { get; set; }
+
 
         /// <summary>
         /// Controls whether the fold actions in the gutter stay always visible 
         /// or hide unless the mouse is over the gutter.
         /// </summary>
-        string ShowFoldingControls { get; }
+        public string ShowFoldingControls { get; set; }
 
         /// <summary>
         /// Gets the suggest behavior of the editor.
         /// </summary>
-        ISuggestOptions Suggest { get; }
+        public ISuggestOptions Suggest { get; set; }
 
         /// <summary>
         /// The font size for the suggest widget.
         /// </summary>
-        double SuggestFontSize { get; }
+        public double SuggestFontSize { get; set; }
 
         /// <summary>
         /// The line height for the suggest widget.
         /// </summary>
-        int SuggestLineHeight { get; }
+        public int SuggestLineHeight { get; set; }
 
         /// <summary>
         /// Enable the suggestion box to pop-up on trigger characters.
         /// </summary>
-        bool SuggestOnTriggerCharacters { get; }
+        public bool SuggestOnTriggerCharacters { get; set; }
 
         /// <summary>
         /// The history mode for suggestions.
         /// </summary>
-        string SuggestSelection { get; }
+        public string SuggestSelection { get; set; }
 
         /// <summary>
         /// Enable tab completion.
         /// </summary>
-        string TabCompletion { get; }
+        public string TabCompletion { get; set; }
 
         /// <summary>
         /// Enable word based suggestions.
         /// </summary>
-        bool WordBasedSuggestions { get; }
+        public bool WordBasedSuggestions { get; set; }
     }
 }

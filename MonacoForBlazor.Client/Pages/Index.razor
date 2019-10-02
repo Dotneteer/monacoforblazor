@@ -1,16 +1,17 @@
 ﻿@page "/"
 
-    <div class="app-component">
-        <div @ref ="TextElement" @ref:suppressField>This is text.</div>
-        <div>
-            <button @onclick="@(async () => await CodeEditor.Focus())">Focus</button>
-            <button @onclick="@(async () => Console.WriteLine(await CodeEditor.GetConfiguration()))">GetConfiguration</button>
-            <button @onclick="@(async () => await CodeEditor.ApplyFontInfo(TextElement))">ApplyFontInfo</button>
-        </div>
-        <div class="editor-container">
-            <CodeEditor @ref="CodeEditor" @ref:suppressField Options="@_options"></CodeEditor>
-        </div>
+<div class="app-component">
+    <div @ref="TextElement">This is text.</div>
+    <div>
+        <button @onclick="@(async () => await CodeEditor.Focus())">Focus</button>
+        <button>GetConfiguration</button>
+        <button>ApplyFontInfo</button>
     </div>
+    <div class="editor-container">
+        <CodeEditor @ref="CodeEditor" Options="@_options"></CodeEditor>
+    </div>
+
+</div>
 
 @code {
     private EditorOptions _options;
@@ -19,6 +20,7 @@
 
     protected override void OnInitialized()
     {
+        Console.WriteLine("Initialized...");
         _options = new EditorOptions
         {
             Value = "// --- This is a comment",

@@ -12,8 +12,6 @@
     [Parameter]
     public EditorOptions Options { get; set; }
 
-    private bool _rendered;
-
     /// <summary>
     /// The identifier of the editor
     /// </summary>
@@ -32,11 +30,10 @@
     /// <summary>
     /// Create the editor when rendering the container
     /// </summary>
-    protected override async Task OnAfterRenderAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (_rendered) return;
+        if (!firstRender) return;
         await JSRuntime.Create(Id, Options);
-        _rendered = true;
     }
 
     /// <summary>
